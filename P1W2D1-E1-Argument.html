@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
+
+	<title>Phase 1 - Week 2</title>
+
+	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
+
+	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+	<!-- Custom styles for our template -->
+	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
+	<link rel="stylesheet" href="assets/css/main.css">
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="assets/js/html5shiv.js"></script>
+	<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
+			</div>
+		</div>
+	</div>
+	<!-- /.navbar -->
+
+	<header id="head" class="secondary"></header>
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="index.html">Home</a></li>
+			<li class="active">Phase 1 - Week 2</li>
+		</ol>
+
+		<div class="row">
+
+			<!-- Sidebar -->
+			<aside class="col-md-4 sidebar sidebar-left">
+
+				<div class="row widget">
+					<div class="col-xs-12">
+						<h4>Day 1 . Monday</h4>
+							<ul>
+								<a href="P1W1-L2.html"><li>OOP Characteristics</li></a>
+								<li>Exercise</li>
+									<ul>
+										<li><a href="P1W2D1-E1-Argument.html">Argument Order Dependency - Anchor</a></li>
+										<li><a href="P1W2D1-E2-this.html">'This' Keywords - Anchor</a></li>
+										<li><a href="P1W2D1-E3-Explore.html">Exploring More Advanced Javascript</a></li>
+										<li><a href="P1W2D1-E4-Sudoku.html">Sudoku 3 - Anchor</a></li>
+									</ul>
+								<a href="P1W1-L3.html"><li>Data Storage , Persistence, and Parsing</li></a>
+								<li>Exercise</li>
+									<ul>
+										<li><a href="P1W2D1-E5-ClassicInheritance.html">Classical Inheritance-anchor</a></li>
+										<li><a href="P1W2D1-E6-MangoTree2.html">Mango Tree 2-anchor</a></li>
+										<li>Parsing Data 1-anchor</li>
+										<li>Parsing Data 2-rocket</li>
+									</ul>
+								</li>
+							</ul>
+					</div>
+				</div>
+
+
+			</aside>
+			<!-- /Sidebar -->
+
+			<!-- Article main content -->
+			<article class="col-md-8 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Argument Order Dependency - Anchor</h1>
+				</header>
+				<h2>Learning Competencies</h2>
+				<ul>
+						<li>Mampu menuliskan code dengan mendefinisikan method, parameter dan return value yang akurat</li>
+						<li>Mampu mengenali karakteristik dari sebuah code yang bagus dan mengikuti Best Practices dan menginmplementasikannya ke dalamn code</li>
+				</ul>
+				<h2>Soal</h2>
+				<p>
+						Jawab Pertanyaan dengan named arguments
+				</p>
+				<h2>Jawaban 1</h2>
+				<pre><code>
+"use strict"
+
+class House {
+
+constructor(rumah) {
+  this.address = rumah['address'] //rumah.address
+  this.square_feet = rumah.square_feet
+  this.num_bedrooms = rumah.num_bedrooms || 3
+  this.num_baths = rumah.num_baths || 2
+  this.cost = rumah.cost || 320000
+  this.down_payment = rumah.down_payment || 0.20
+  if(rumah.hasOwnProperty("sold")) this.sold = rumah.sold; else this.sold = false
+  this.short_sale = rumah.short_sale
+  if(rumah.hasOwnProperty("has_tenants")) this.has_tenants = rumah.has_tenants; else this.has_tenants = false
+}
+
+obscure_address() {
+  return this.address.replace(/.{10}$/g, '****')
+}
+
+buy(money, good_credit) {
+  if (money >= down_payment && good_credit)
+    this.sold = true
+}
+
+down_payment() {
+  return cost * this.down_payment
+}
+
+to_s() {
+  return `${this.obscure_address()} : ${this.square_feet} sq. ft., ${this.num_bedrooms} bed, ${this.num_baths} bath. ${this.cost}`
+}
+}
+
+let rumah = new House(
+{
+  address : 'Ciledug',
+  square_feet : 5,
+  num_bedrooms : 2,
+  num_baths : 3,
+  cost : false,
+  down_payment : 100000000,
+  sold : false,
+  has_tenants : false
+}
+)
+
+console.log(rumah)
+				</code></pre>
+
+				<h2>Jawaban 2</h2>
+				<pre><code>
+"use strict"
+
+class House {
+
+constructor(property) {
+  this.address = property["address"];
+  this.square_feet = property["square_feet"];
+  this.num_bedrooms = property["num_bedrooms"] || 3;
+  this.num_baths = property["num_baths"] || 2;
+  this.cost = property["cost"] || 320000;
+  this.down_payment = property["down_payment"] || 0.20;
+  this.sold = property["sold"] || false;
+  this.short_sale = property["short_sale"];
+  this.has_tenants = property["has_tenants"] || false;
+}
+
+obscure_address() {
+  this.address.replace(/.{10}$/g, '****')
+}
+
+buy(money, good_credit) {
+  if (money >= down_payment && good_credit)
+    this.sold = true
+}
+
+down_payment() {
+  return cost * this.down_payment
+}
+
+to_s() {
+  return `${obscure_address} : ${square_feet} sq. ft., ${num_bedrooms} bed, ${num_baths} bath. ${cost}`
+}
+}
+
+let house_prop = [];
+house_prop["address"] = "Jakarta";
+house_prop["square_feet"] = 200;
+house_prop["num_bedrooms"] = 4;
+house_prop["num_baths"] = 4;
+house_prop["cost"] = 1000000000;
+house_prop["down_payment"] = 300000000;
+house_prop["sold"] = true;
+house_prop["short_sale"] = true;
+house_prop["has_tenants"] = true;
+
+let minimalis = new House(house_prop);
+console.log(minimalis.down_payment)
+</code></pre>
+
+
+				<h2>link</h2>
+				<a href="https://github.com/arctic-fox-2016/argument-order-dependency">Link Repo Soal</a>
+			</article>
+			<!-- /Article -->
+
+		</div>
+	</div>	<!-- /container -->
+
+
+	<footer id="footer" class="top-space">
+
+		<div class="footer1">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-3 widget">
+						<h3 class="widget-title">Contact</h3>
+						<div class="widget-body">
+							<p>+234 23 9873237<br>
+								<a href="mailto:#">some.email@somewhere.com</a><br>
+								<br>
+								234 Hidden Pond Road, Ashland City, TN 37015
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-3 widget">
+						<h3 class="widget-title">Follow me</h3>
+						<div class="widget-body">
+							<p class="follow-me-icons">
+								<a href=""><i class="fa fa-twitter fa-2"></i></a>
+								<a href=""><i class="fa fa-dribbble fa-2"></i></a>
+								<a href=""><i class="fa fa-github fa-2"></i></a>
+								<a href=""><i class="fa fa-facebook fa-2"></i></a>
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-6 widget">
+						<h3 class="widget-title">Text widget</h3>
+						<div class="widget-body">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, dolores, quibusdam architecto voluptatem amet fugiat nesciunt placeat provident cumque accusamus itaque voluptate modi quidem dolore optio velit hic iusto vero praesentium repellat commodi ad id expedita cupiditate repellendus possimus unde?</p>
+							<p>Eius consequatur nihil quibusdam! Laborum, rerum, quis, inventore ipsa autem repellat provident assumenda labore soluta minima alias temporibus facere distinctio quas adipisci nam sunt explicabo officia tenetur at ea quos doloribus dolorum voluptate reprehenderit architecto sint libero illo et hic.</p>
+						</div>
+					</div>
+
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+
+		<div class="footer2">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="simplenav">
+								<a href="#">Home</a> |
+								<a href="about.html">About</a> |
+								<a href="sidebar-right.html">Sidebar</a> |
+								<a href="contact.html">Contact</a> |
+								<b><a href="signup.html">Sign up</a></b>
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="text-right">
+								Copyright &copy; 2014, Your name. Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a>
+							</p>
+						</div>
+					</div>
+
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+	</footer>
+
+
+
+
+
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="assets/js/headroom.min.js"></script>
+	<script src="assets/js/jQuery.headroom.min.js"></script>
+	<script src="assets/js/template.js"></script>
+</body>
+</html>
